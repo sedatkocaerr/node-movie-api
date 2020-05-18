@@ -1,2 +1,2 @@
 # node-movie-api
-Nodejs movieApi 
+Nodejs movieApi değişti
