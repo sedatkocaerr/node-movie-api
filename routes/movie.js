@@ -5,16 +5,29 @@ const Movie = require('../models/Movie');
 // GEt all movies
 router.get('/',(req,res)=>{
 
-  Movie.find({},(err,data)=>{
+    const promise = Movie.aggregate(
+      [
+       { 
+         $lookup: {
+          from:'directors',
+          localField:'director_id',
+          foreignField:'_id',
+          as:'director'
 
-    const promise = Movie.find({});
+        }
+      },
+      {
+        $unwind:'director'
+      }
+      ]
+    );
     promise.then((data)=>{
       res.json(data)
     }).catch((err)=>{
       res.json(err);
     });
 
-  });
+  
 
 });
 
@@ -88,7 +101,7 @@ router.put('/:movie_id',(req,res,next)=>{
 
 // remove with movie_id
 
-router.put('/:movie_id',(req,res,next)=>{
+router.delete('/:movie_id',(req,res,next)=>{
 
   const promise=Movie.findByIdAndRemove(req.params.movie_id);
 

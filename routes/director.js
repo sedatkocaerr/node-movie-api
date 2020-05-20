@@ -132,6 +132,8 @@ route.get('/:director_id',(req,res)=>{
 
 });
 
+// update director with director_id
+
 route.put('/:director_id',(req,res,next)=>{
 
     const promise =Director.findByIdAndUpdate(
@@ -148,6 +150,23 @@ route.put('/:director_id',(req,res,next)=>{
             }).catch((err) => {
             res.json(err);
         });
+});
+
+
+// remove director with director_id
+
+route.delete('/:director_id',(req,res)=>{
+
+    const promise=Director.findByIdAndDelete(req.params.director_id);
+
+    promise.then((result) => {
+        if(!data)
+                return next({message:"director not found",code:99});
+        res.json({status:1});
+    }).catch((err) => {
+        res.json(err);
+    });
+
 });
 
 module.exports=route;
