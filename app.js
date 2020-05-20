@@ -3,12 +3,19 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const app = express();
+
+
+// config ile global atama yapılıyor
+const config = require('./config');
+app.set('api_secret_key',config.api_secret_key);
+
+// middleware
+const verifytoken = require('./middleware/verify-token'); 
 
 const indexRouter = require('./routes/index');
 const movieRouter = require('./routes/movie');
 const directorRouter = require('./routes/director');
-
-const app = express();
 
 // Db connection 
 //Not : ikinci () işareti gelen fonksiyonu çalıştırmak içindir...
@@ -25,6 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/api',verifytoken);
 app.use('/api/movies', movieRouter);
 app.use('/api/directors', directorRouter);
 
