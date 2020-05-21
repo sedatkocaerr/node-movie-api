@@ -7,7 +7,7 @@ const MovieSchema=new Schema({
         type:String,
         required:[true,'`{PATH}` alanı zorunludur'],
         maxlength:[80,'`{PATH}` alanı maximum `{MAXLENGTH}` karakter kadar olmalıdır.'],
-        minlength:[150,'`{PATH}` alanı minimum `{MINLENGTH}` karakter kadar olmalıdır.']
+        minlength:[1,'`{PATH}` alanı minimum `{MINLENGTH}` karakter kadar olmalıdır.']
     },
     category:{
         type:String,
@@ -20,6 +20,7 @@ const MovieSchema=new Schema({
         minlength:1
     },
     year:Number,
+    
     imbd_score:{
         type:Number,
         maxlength:10,

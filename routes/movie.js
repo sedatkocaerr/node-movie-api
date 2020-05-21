@@ -17,7 +17,7 @@ router.get('/',(req,res)=>{
         }
       },
       {
-        $unwind:'director'
+        $unwind:'$director'
       }
       ]
     );
@@ -26,9 +26,6 @@ router.get('/',(req,res)=>{
     }).catch((err)=>{
       res.json(err);
     });
-
-  
-
 });
 
 
@@ -40,7 +37,7 @@ router.post('/new', (req, res, next) =>{
   const promise=movie.save();
 
   promise.then((data)=>{
-    res.json({status:1})
+    res.json(data);
   }).catch((err)=>{
     res.json(err);
     });

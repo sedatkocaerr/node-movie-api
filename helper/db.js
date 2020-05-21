@@ -1,5 +1,8 @@
 const mongoose=require('mongoose');
-
+// mopngoose konsol hatalınıı gizlemek için
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 module.exports=()=>{
 
 
@@ -8,7 +11,6 @@ module.exports=()=>{
 
     mongoose.connection.on('open',()=>{
 
-        console.log("Mongodb is Connected ");
     });
 
     mongoose.connection.on('error',(err)=>{
