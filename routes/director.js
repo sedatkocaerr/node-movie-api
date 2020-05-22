@@ -20,7 +20,7 @@ route.post('/new',(req,res)=>{
 
 // get director and director films
 
-route.get('/directorandfilms',(req,res)=>{
+route.get('/directorandfilms/:director_id',(req,res)=>{
 
     const promise =Director.aggregate(
     [
@@ -160,8 +160,8 @@ route.delete('/:director_id',(req,res)=>{
     const promise=Director.findByIdAndDelete(req.params.director_id);
 
     promise.then((result) => {
-        if(!data)
-                return next({message:"director not found",code:99});
+        if(!result)
+            return next({message:"director not found",code:99});
         res.json({status:1});
     }).catch((err) => {
         res.json(err);
