@@ -6,7 +6,7 @@ mongoose.set('useCreateIndex', true);
 module.exports=()=>{
 
 
-    mongoose.connect('mongodb+srv://ekremhayatsever:ekrem123@cluster0-pepnc.mongodb.net/test?retryWrites=true&w=majority'
+    mongoose.connect('your mongodb key'
     ,{useNewUrlParser:true,useUnifiedTopology:true});
 
     mongoose.connection.on('open',()=>{
