@@ -1,2 +1,3 @@
 # node-movie-api
-Nodejs movieApi değişti
+Nodejs movieApi for the CRUD.
+
